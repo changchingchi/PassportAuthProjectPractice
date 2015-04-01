@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+      <script>
+
+    function add(myform){
+    	alert(myform["zipcode"].value);
+    }
+    function isValinonEmpty(inputfield, helptext){
+    	if(inputfield.value.length===0){
+    		helptext.innerHTML = "invalid Zipcode";
+    		return false;
+    	}else{
+    		helptext.innerHTML = "";
+    		return true;
+    	}
+    	
+    }
+    function isValiZip(inputfield, helptext){
+    	if(inputfield.value.length!==5){
+    		helptext.innerHTML = "need 5 digis";
+    		return false;
+    	}else if(isNaN(inputfield.value)){
+    		helptext.innerHTML = "plaese type in number";
+    		return false;
+	    }else{
+	    	helptext.innerHTML = "";
+	    	return true;
+	    }
+	}
+	function placeorder(form){
+		console.log(form["zipcodee_help"]);
+		if(isValiZip(form["zipcode"], form["zipcodee_help"])){
+			form.submit();
+		}
+	}
+	function isDateVali(inputfield, helptext){
+		console.log(inputfield.value);
+		if(inputfield.value.length!==0){
+			var pattern = /^\d{2}\/\d{2}\/(\d{2}|\d{4})$/;
+			if(pattern.test(inputfield.value)){
+				helptext.innerHTML="";
+			
+			return true;}
+		}
+		
+			helptext.innerHTML = "no valid date"
+			return false;
+		
+	}
+    </script>
+  </head>
+  <body>
+    
+    <div>
+        <% if(!isAuthenticated){  %>
+                <a href="/login">login here</a>
+        <%  }else{ %>
+                Hello,  <%= user.name %>
+                <a href="/logout">Log out here</a>
+        <%  }  %>
+
+
+    </div>
+    <div>
+    	<form action="" method="post" name='myform'>
+
+    		message <input type="text" id='message' name='message' size='64'><br>
+    		ZipCode <input type="text" id='zipcode' name='zipcode' size='5' onblur="isValiZip(this,document.getElementById('zipcodee_help'))">
+			<span id ="zipcodee_help" name="zipcodee_help" class="help"></span>
+    		<br>
+    		Date <input type="text" id='date' name='date' onblur="isDateVali(this,document.getElementById('date_help'))">
+			<span id ="date_help" name="date_help" class="help"></span>><br>
+
+    		Name <input type="text" ><br>
+    		Phone # <input type="text" ><br>
+    		Email <input type="text" ><br>
+    		<input type="button" onclick="placeorder(this.form)">submit</input>
+
+    	</form>
+	
+    </div>
+
+  
+  </body>
+
+</html>
