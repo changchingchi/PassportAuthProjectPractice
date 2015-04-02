@@ -9,3 +9,7 @@ Two strategies are used here.
   follow this tutorial: https://www.youtube.com/watch?v=twav6O53zIQ
 
 
+# Socket.io
+
+Adding this function to simulate a messager. Peopel connect to same URL can talk to each other. Using socket.io, please see the follow link for the office docs. 
+   http://socket.io/
