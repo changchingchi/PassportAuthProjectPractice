@@ -14,6 +14,16 @@ var users = require('./routes/users');
 
 var app = express();
 
+//integrate socket.io into project.
+var https = require('./bin/www');
+var io = require('socket.io')(https);
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
+
+console.log(io);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

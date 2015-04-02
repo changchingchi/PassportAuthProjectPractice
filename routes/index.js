@@ -13,9 +13,12 @@ router.get('/', function(req, res) {
 router.get('/login', function(req, res){
 	res.render('login');
 });
+router.get('/chat', function(req,res){
+	res.render('chat');
+});
 
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
+  passport.authenticate('local', { successRedirect: '/chat',
                                    failureRedirect: '/login',
                                    failureFlash: true })
 );
